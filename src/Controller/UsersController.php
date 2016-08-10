@@ -12,7 +12,7 @@ class UsersController extends AppController
             if($this->Auth->isAuthorized()){
                 $this->Auth->allow('add');
             }else{
-                $this->Auth->deny(array('add','logout'));
+                $this->Auth->allow(array('add','logout'));
             }
         }
 	

@@ -17,11 +17,12 @@
     <fieldset>
         <legend><?= __('Edit Oauth Client') ?></legend>
         <?php
-            echo $this->Form->input('client_secret');
+            echo $this->Form->input('id',array('label' => 'API_KEY','type' => 'text','readonly'=>true));
+            echo $this->Form->input('client_secret',array('label' => 'API_SECRET_KEY','readonly'=>true));
             echo $this->Form->input('name');
             echo $this->Form->input('redirect_uri');
-            echo $this->Form->input('parent_model');
-            echo $this->Form->input('parent_id', ['options' => $parentOauthClients, 'empty' => true]);
+            //echo $this->Form->input('parent_model');
+            //echo $this->Form->input('parent_id', ['options' => $parentOauthClients, 'empty' => true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

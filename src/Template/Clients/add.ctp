@@ -11,11 +11,11 @@
     <fieldset>
         <legend><?= __('Add Oauth Client') ?></legend>
         <?php
-            echo $this->Form->input('client_secret');
+//            echo $this->Form->input('client_secret');
             echo $this->Form->input('name');
             echo $this->Form->input('redirect_uri');
-            echo $this->Form->input('parent_model');
-            echo $this->Form->input('parent_id', ['options' => $parentOauthClients, 'empty' => true]);
+            //echo $this->Form->input('parent_model');
+            //echo $this->Form->input('parent_id', ['options' => $parentOauthClients, 'empty' => true]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
