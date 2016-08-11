@@ -16,14 +16,6 @@ class UserBalanceController extends AppController
     public function beforeFilter(Event $event)
     {
         parent::beforeFilter($event);
-        
-//        $this->Auth->deny(['index']);
-//        $this->Auth->allow(['add']);
-        if($this->Auth->isAuthorized()){
-            $this->Auth->add('userbalance');
-        }else{
-            $this->Auth->deny('userbalance');
-        }
     }
     /**
      * Index method

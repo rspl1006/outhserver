@@ -47,9 +47,9 @@ class AppController extends Controller
                 'Crud.Add',
                 'Crud.Edit',
                 'Crud.Delete',
-                'login' => [
-					'className' => 'OAuthServer.Login'
-				],
+//                'login' => [
+//					'className' => 'OAuthServer.Login'
+//				],
                 'logout' => [
 					'className' => 'OAuthServer.Logout'
 				]

@@ -8,25 +8,15 @@
     <h3><?= __('Oauth Clients') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
-            <tr>
-                <th><?= $this->Paginator->sort('id') ?></th>
-                <th><?= $this->Paginator->sort('client_secret') ?></th>
+            <tr>                
                 <th><?= $this->Paginator->sort('name') ?></th>
-                <th><?= $this->Paginator->sort('redirect_uri') ?></th>
-                <th><?= $this->Paginator->sort('parent_model') ?></th>
-                <th><?= $this->Paginator->sort('parent_id') ?></th>
                 <th class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($clients as $oauthClient): ?>
             <tr>
-                <td><?= h($oauthClient->id) ?></td>
-                <td><?= h($oauthClient->client_secret) ?></td>
                 <td><?= h($oauthClient->name) ?></td>
-                <td><?= h($oauthClient->redirect_uri) ?></td>
-                <td><?= h($oauthClient->parent_model) ?></td>
-                <td><?= $oauthClient->has('parent_oauth_client') ? $this->Html->link($oauthClient->parent_oauth_client->name, ['controller' => 'OauthClients', 'action' => 'view', $oauthClient->parent_oauth_client->id]) : '' ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $oauthClient->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $oauthClient->id]) ?>

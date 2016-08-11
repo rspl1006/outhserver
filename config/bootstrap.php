@@ -210,3 +210,8 @@ Plugin::load('CrudView');
 Plugin::load('BootstrapUI');
 
 //Plugin::load('Search');
+use App\Event\AfterAuthorizeListener;
+$AfterAuthorizeListener = new AfterAuthorizeListener();
+ 
+use Cake\Event\EventManager;
+EventManager::instance()->attach($AfterAuthorizeListener);
