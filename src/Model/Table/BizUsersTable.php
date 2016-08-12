@@ -5,7 +5,7 @@ namespace App\Model\Table;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
-class UsersTable extends Table
+class BizUsersTable extends Table
 {
 
     public function validationDefault(Validator $validator)

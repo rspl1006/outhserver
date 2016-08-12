@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\Event\Event;
 
-class UsersController extends AppController
+class BizusersController extends AppController
 {
 	public function beforeFilter(Event $event)
         {
@@ -18,8 +18,7 @@ class UsersController extends AppController
 		if ($this->request->is('post')) {
 			$user = $this->Auth->identify();
 			if ($user) {
-				$this->Auth->setUser($user);
-				$redirectUri = $this->Auth->redirectUrl();				
+				$this->Auth->setUser($user);				
 				if ($this->request->query['redir'] === 'oauth') {
 					$redirectUri = [
 						'plugin' => 'OAuthServer',
@@ -27,7 +26,14 @@ class UsersController extends AppController
 						'action' => 'authorize',
 						'?' => $this->request->query
 					];
-				}
+				}else{
+                                    $redirectUri = [
+						'plugin' => '',
+						'controller' => 'clients',
+						'action' => 'index'
+					];
+                                }
+                                
 				return $this->redirect($redirectUri);
 			} else {
 				$this->Flash->error(
@@ -59,6 +65,9 @@ class UsersController extends AppController
         }
         public function getuserbalance(){
             echo "111";exit;
+        }
+        
+        public function dashboard(){
         }
 }
 ?>

@@ -54,13 +54,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 		<header class="main-header">
 			<!-- Logo -->
-			<a href="index2.html" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>CHTL</b></span>
 			</a>
 			<!-- Header Navbar: style can be found in header.less -->
 			<nav class="navbar navbar-static-top">
-				 Sidebar toggle button
+                                <!-- Sidebar toggle button-->
 				<a href="#" class="sidebar-toggle" data-toggle="offcanvas"
 					role="button"> <span class="sr-only">Toggle navigation</span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -71,10 +71,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 			</nav>
 		</header>
 		<!-- Left side column. contains the logo and sidebar -->
-<!--		<aside class="main-sidebar">
-			 sidebar: style can be found in sidebar.less 
+		<aside class="main-sidebar">
+			<!--  sidebar: style can be found in sidebar.less  -->
 			<section class="sidebar">
-				 sidebar menu: : style can be found in sidebar.less 
+				<!--   sidebar menu: : style can be found in sidebar.less   -->
 				<ul class="sidebar-menu">
 					<li class="header">MAIN NAVIGATION</li>
 
@@ -86,8 +86,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 								Token</span></a></li>
 				</ul>
 			</section>
-			 /.sidebar 
-		</aside>-->
+			<!-- /.sidebar -->
+		</aside>
 
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
@@ -99,10 +99,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 					<li class="active"><?= $this->fetch('title') ?></li>
 				</ol>
 			</section>
-
+			
 			<!-- Main content -->
 			<section class="content">
+				<div class="row">
                                 <?php echo $this->fetch('content') ?>
+			</div>
 			</section>
 			<!-- /.content -->
 		</div>

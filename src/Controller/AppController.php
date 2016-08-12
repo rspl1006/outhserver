@@ -16,6 +16,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use \Cake\Controller\Component\AuthComponent;
 
 /**
  * Application Controller
@@ -47,9 +48,9 @@ class AppController extends Controller
                 'Crud.Add',
                 'Crud.Edit',
                 'Crud.Delete',
-//                'login' => [
-//					'className' => 'OAuthServer.Login'
-//				],
+                'login' => [
+                            'className' => 'OAuthServer.Login'
+				],
                 'logout' => [
 					'className' => 'OAuthServer.Logout'
 				]
@@ -98,8 +99,15 @@ class AppController extends Controller
 	
 	public function beforeFilter(Event $event){
 		$this->Auth->config('authenticate', [
+                         AuthComponent::ALL => ['userModel' => 'BizUsers'],
+                        'Basic',
 			'Form',
-			'OAuthServer.OAuth'
+//			'OAuthServer.OAuth'
 		]);
+                $Lcontroller = array('oauth','bizusers');
+                $Laction = array('authorize','login');
+                if(in_array(strtolower($this->request->params['controller']),$Lcontroller) && in_array(strtolower($this->request->params['action']),$Laction)){
+                    $this->viewBuilder()->layout("login");
+                }
 	}
 }
