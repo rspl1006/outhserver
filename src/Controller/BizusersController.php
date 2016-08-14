@@ -28,7 +28,6 @@ class BizusersController extends AppController
 					];
 				}else{
                                     $redirectUri = [
-						'plugin' => '',
 						'controller' => 'clients',
 						'action' => 'index'
 					];

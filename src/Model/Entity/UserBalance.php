@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * UserBalance Entity
  *
  * @property int $id
- * @property int $user_id
+ * @property int $client_id
  * @property string $balance
  *
  * @property \App\Model\Entity\User $user

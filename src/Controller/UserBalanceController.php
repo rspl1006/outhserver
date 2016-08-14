@@ -25,12 +25,13 @@ class UserBalanceController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users']
+            'contain' => ['Client']
         ];
         $userBalance = $this->paginate($this->UserBalance);
 
         $this->set(compact('userBalance'));
         $this->set('_serialize', ['userBalance']);
+        $this->set("title","Client Balance");
     }
 
     /**
@@ -43,10 +44,11 @@ class UserBalanceController extends AppController
     public function view($id = null)
     {
         $userBalance = $this->UserBalance->get($id, [
-            'contain' => ['Users']
+            'contain' => ['Client']
         ]);
-
+        $users = $this->UserBalance->Client->find('list', ['limit' => 200]);
         $this->set('userBalance', $userBalance);
+        $this->set('users', $users);
         $this->set('_serialize', ['userBalance']);
     }
 
@@ -57,7 +59,6 @@ class UserBalanceController extends AppController
      */
     public function add()
     {
-        $user = $this->Auth->user();
         $userBalance = $this->UserBalance->newEntity();
         if ($this->request->is('post')) {
             $userBalance = $this->UserBalance->patchEntity($userBalance, $this->request->data);
@@ -69,10 +70,10 @@ class UserBalanceController extends AppController
                 $this->Flash->error(__('The user balance could not be saved. Please, try again.'));
             }
         }
-        $results = $this->UserBalance->Users->find('all', ['limit' => 200])->where(['id' => $user['id']]);
+        $results = $this->UserBalance->Client->find('all', ['limit' => 200]);
         $usersLists = $results->toArray();
         foreach ($usersLists as $usersList){
-            $users[$usersList->id] = $usersList['username'];
+            $users[$usersList->id] = $usersList['name'];
         }
         $this->set(compact('userBalance', 'users'));
         $this->set('_serialize', ['userBalance']);
@@ -88,7 +89,7 @@ class UserBalanceController extends AppController
     public function edit($id = null)
     {
         $userBalance = $this->UserBalance->get($id, [
-            'contain' => []
+            'contain' => ['Client']
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $userBalance = $this->UserBalance->patchEntity($userBalance, $this->request->data);
@@ -100,7 +101,7 @@ class UserBalanceController extends AppController
                 $this->Flash->error(__('The user balance could not be saved. Please, try again.'));
             }
         }
-        $users = $this->UserBalance->Users->find('list', ['limit' => 200]);
+        $users = $this->UserBalance->Client->find('list', ['limit' => 200]);
         $this->set(compact('userBalance', 'users'));
         $this->set('_serialize', ['userBalance']);
     }
@@ -126,8 +127,7 @@ class UserBalanceController extends AppController
     }
     public function userbalance(){
         $user = $this->Auth->user();
-        $userBalance = $this->UserBalance->find('all')->where(['user_id' => $user['id']])->limit(1)->order(array('id' => 'desc'));
-        
+        $userBalance = $this->UserBalance->find('all')->where(['client_id' => $user['id']])->limit(1)->order(array('id' => 'desc'));
         echo json_encode($userBalance);exit;
     }
 }

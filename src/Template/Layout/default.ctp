@@ -31,7 +31,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <!-- Font Awesome -->
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-<!-- Ionicons -->
+ <!--Ionicons--> 
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 <!-- Theme style -->
@@ -66,6 +66,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 					class="icon-bar"></span> <span class="icon-bar"></span> <span
 					class="icon-bar"></span>
 				</a>
+<!--                                <a href="/users/logout" class="pull-right fc-button"> 
+                                    Logout
+				</a>-->
+            <div class="nav navbar-nav navbar-right">
+                <?php echo $this->Html->link('Logout',['controller' => 'users','action' => 'logout'],['class' => 'navbar-brand']);?>
+            </div>
 
 
 			</nav>
@@ -78,12 +84,16 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 				<ul class="sidebar-menu">
 					<li class="header">MAIN NAVIGATION</li>
 
-					<li><a href="index.html"><i class="fa fa-file"></i> <span>Get
-								Token</span></a></li>
-					<li><a href="index.html"><i class="fa fa-file"></i> <span>Get
+					<li>
+                                            <?= $this->Html->link('<i class="fa fa-file"></i><span>'.(__("Clients")).'</span>', ['controller' => 'clients','action' => 'index'],array('escape' => false)) ?>
+                                        </li>
+					<li>
+                                            <?= $this->Html->link('<i class="fa fa-file"></i><span>'.(__("Clients Balance")).'</span>', ['controller' => 'userbalance','action' => 'index'],array('escape' => false)) ?>
+                                        </li>
+<!--					<li><a href="index.html"><i class="fa fa-file"></i> <span>Get
 								Products</span></a></li>
 					<li><a href="index.html"><i class="fa fa-file"></i> <span>Expire
-								Token</span></a></li>
+								Token</span></a></li>-->
 				</ul>
 			</section>
 			<!-- /.sidebar -->

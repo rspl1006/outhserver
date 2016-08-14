@@ -15,7 +15,7 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\ParentOauthClient $parent_oauth_client
  * @property \App\Model\Entity\ChildOauthClient[] $child_oauth_clients
  */
-class OauthClient extends Entity
+class Client extends Entity
 {
 
     /**

@@ -65,18 +65,9 @@ class AppController extends Controller
     public function initialize()
     {
         parent::initialize();
-
-//        $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth'); 
-//		$this->loadComponent([
-//            'actions' => [
-//                'Crud.Index',
-//				'login' => [
-//					'className' => 'OAuthServer.Login'
-//				]				
-//            ]
-//        ]);
+        $this->loadComponent('Auth');
+        $this->loadComponent('OAuthServer.OAuth',['tokenTTL' => 3600]); 
     }
 
     /**
@@ -92,9 +83,6 @@ class AppController extends Controller
         ) {
             $this->set('_serialize', true);
         }
-//        if ($this->viewClass === null) {
-//            $this->viewClass = 'CrudView\View\CrudView';
-//        }
     }
 	
 	public function beforeFilter(Event $event){
@@ -102,12 +90,19 @@ class AppController extends Controller
                          AuthComponent::ALL => ['userModel' => 'BizUsers'],
                         'Basic',
 			'Form',
-//			'OAuthServer.OAuth'
+			'OAuthServer.OAuth'
 		]);
+                
                 $Lcontroller = array('oauth','bizusers');
                 $Laction = array('authorize','login');
                 if(in_array(strtolower($this->request->params['controller']),$Lcontroller) && in_array(strtolower($this->request->params['action']),$Laction)){
                     $this->viewBuilder()->layout("login");
                 }
+                
+//                if(!$this->Auth->user() &&  $this->request->params['action'] != "login"){
+//                    $query = $this->request->query;
+//                    return $this->redirect(['controller' => 'users','action' => 'login','?' => $query]);
+//                }
+                
 	}
 }

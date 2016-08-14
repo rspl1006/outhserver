@@ -1,48 +1,93 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Oauth Client'), ['action' => 'edit', $client->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Oauth Client'), ['action' => 'delete', $client->id], ['confirm' => __('Are you sure you want to delete # {0}?', $client->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Oauth Clients'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Oauth Client'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Parent Oauth Clients'), ['controller' => 'OauthClients', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Parent Oauth Client'), ['controller' => 'OauthClients', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="clients view large-9 medium-8 columns content">
-    <h3><?= h($client->name) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th><?= __('API_KEY') ?></th>
-            <td><?= h($client->id) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('API_SECRET_KEY') ?></th>
-            <td><?= h($client->client_secret) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Name') ?></th>
-            <td><?= h($client->name) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Redirect Uri') ?></th>
-            <td><?= h($client->redirect_uri) ?></td>
-        </tr>
-        
-    </table>
-    <div class="related">
-        <h4><?= __('Related Oauth Clients') ?></h4>
-        <?php if (!empty($client->child_oauth_clients)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th><?= __('Id') ?></th>
-                <th><?= __('Client Secret') ?></th>
-                <th><?= __('Name') ?></th>
-                <th><?= __('Redirect Uri') ?></th>
-                <th class="actions"><?= __('Actions') ?></th>
-            </tr>
-            
-        </table>
-    <?php endif; ?>
+<div class="row">
+
+    <!-- right column -->
+    <div class="col-md-12">
+        <!-- Horizontal Form -->
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title"><?php echo (__("View Client"));?></h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+                                                        <?= $this->Form->create($client,['class' => 'form-horizontal']) ?>
+                                                        <?php 
+                                                        $myTemplates = [
+                                                            'inputContainer' => '<div class="col-sm-10">{{content}}</div>',
+                                                            'submitContainer' => '{{content}}',
+                                                        ];
+                                                        $this->Form->templates($myTemplates);
+                                                        ?>
+            <div class="box-body">
+                <div class="row">
+
+                    <!-- right column -->
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label for="api_key" class="col-sm-2 control-label">
+                                                                                                    <?php echo (__("API Key"));?>
+                            </label>
+
+                                                                                                <?php echo $this->Form->input('id',array('class' =>'form-control','label' => false,'type' => 'text','readonly'=>true));?>        
+                        </div>
+                        <div class="form-group">
+                            <label for="api_key" class="col-sm-2 control-label">
+                                                                                                    <?php echo (__("API Secret"));?>
+                            </label>
+
+                                                                                                <?php echo $this->Form->input('client_secret',array('class' =>'form-control','label' => false,'readonly'=>true));?>        
+                        </div>
+                        <div class="form-group">
+                            <label for="api_key" class="col-sm-2 control-label">
+                                                                                                    <?php echo (__("APP Name"));?>
+                            </label>
+
+                                                                                                <?php echo $this->Form->input('name',['class' =>'form-control','label' => false]);?>        
+                        </div>
+                        <div class="form-group">
+                            <label for="api_key" class="col-sm-2 control-label">
+                                                                                                    <?php echo (__("Redirect URI"));?>
+                            </label>
+
+                                                                                                <?php echo $this->Form->input('redirect_uri',['class' =>'form-control','label' => false]); ?>
+                        </div>
+
+                        <!--											<div class="form-group">
+                                                                                                                        <label for="api_secret" class="col-sm-2 control-label">API
+                                                                                                                                Secret</label>
+                        
+                                                                                                                        <div class="col-sm-10">
+                                                                                                                                <input type="text" name="api_secret" class="form-control" id="api_secret" placeholder="API Secret">
+                                                                                                                        </div>
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                                                                                                <button type="submit" class="btn btn-info pull-left">Generate
+                                                                                                                                        Token</button>
+                                                                                                                        </div>
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                                                                                                <p>
+                                                                                                                                        <strong>Your Token is :</strong>---------------------------
+                                                                                                                                </p>
+                                                                                                                        </div>
+                                                                                                                </div>-->
+                        <div class="form-group">   
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <?= $this->Html->link(__('Back'), ['action' => 'index'],['class' => 'btn btn-info custom-button-width .navbar-right']) ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer"></div>
+            <!-- /.box-footer -->
+							<?= $this->Form->end() ?>
+        </div>
+        <!-- /.box -->
+
     </div>
+    <!--/.col (right) -->
 </div>
+

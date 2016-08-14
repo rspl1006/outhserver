@@ -21,7 +21,7 @@ class OAuthController extends AppController
      */
     public function initialize()
     {
-        $this->loadComponent('OAuthServer.OAuth', (array)Configure::read('OAuth'));
+//        $this->loadComponent('OAuthServer.OAuth', (array)Configure::read('OAuth'));
         $this->loadComponent('RequestHandler');
         parent::initialize();
     }
@@ -102,7 +102,7 @@ class OAuthController extends AppController
         }
 
         if ($this->request->is('post') && $this->request->data['authorization'] === 'Approve') {
-            $ownerModel = isset($this->request->data['owner_model']) ? $this->request->data['owner_model'] : 'Users';
+            $ownerModel = isset($this->request->data['owner_model']) ? $this->request->data['owner_model'] : 'BizUsers';
             $ownerId = isset($this->request->data['owner_id']) ? $this->request->data['owner_id'] : $this->Auth->user('id');
             $redirectUri = $this->OAuth->Server->getGrantType('authorization_code')->newAuthorizeRequest($ownerModel, $ownerId, $authParams);
             $event = new Event('OAuthServer.afterAuthorize', $this,array());

@@ -32,12 +32,12 @@ class UserBalanceTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('user_balance');
+        $this->table('client_balance');
         $this->displayField('id');
         $this->primaryKey('id');
 
-        $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
+        $this->belongsTo('Client', [
+            'foreignKey' => 'client_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -70,7 +70,7 @@ class UserBalanceTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-        $rules->add($rules->existsIn(['user_id'], 'Users'));
+        $rules->add($rules->existsIn(['client_id'], 'Client'));
 
         return $rules;
     }

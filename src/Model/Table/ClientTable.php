@@ -13,7 +13,7 @@ use Cake\Validation\Validator;
  * @property \Cake\ORM\Association\BelongsTo $ParentOauthClients
  * @property \Cake\ORM\Association\HasMany $ChildOauthClients
  */
-class OauthClientsTable extends Table
+class ClientTable extends Table
 {
 
     /**
@@ -57,7 +57,7 @@ class OauthClientsTable extends Table
 
         $validator
             ->requirePresence('name', 'create')
-            ->notEmpty('name');
+            ->notEmpty('name',(__('Please enter name your app.')));
 
         $validator
             ->requirePresence('redirect_uri', 'create')

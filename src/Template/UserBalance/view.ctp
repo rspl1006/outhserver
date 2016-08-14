@@ -1,28 +1,78 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit User Balance'), ['action' => 'edit', $userBalance->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete User Balance'), ['action' => 'delete', $userBalance->id], ['confirm' => __('Are you sure you want to delete # {0}?', $userBalance->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List User Balance'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User Balance'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="userBalance view large-9 medium-8 columns content">
-    <h3><?= h($userBalance->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th><?= __('User') ?></th>
-            <td><?= $userBalance->has('user') ? $this->Html->link($userBalance->user->id, ['controller' => 'Users', 'action' => 'view', $userBalance->user->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Balance') ?></th>
-            <td><?= h($userBalance->balance) ?></td>
-        </tr>
-        <tr>
-            <th><?= __('Id') ?></th>
-            <td><?= $this->Number->format($userBalance->id) ?></td>
-        </tr>
-    </table>
+<div class="row">
+
+    <!-- right column -->
+    <div class="col-md-12">
+        <!-- Horizontal Form -->
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">View</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+                                                        <?= $this->Form->create($userBalance,['class' => 'form-horizontal']) ?>
+                                                        <?php 
+                                                        $myTemplates = [
+                                                            'inputContainer' => '<div class="col-sm-10">{{content}}</div>',
+                                                            'submitContainer' => '{{content}}',
+                                                        ];
+                                                        $this->Form->templates($myTemplates);
+                                                        ?>
+            <div class="box-body">
+                <div class="row">
+
+                    <!-- right column -->
+                    <div class="col-md-7">
+                        <div class="form-group">
+                            <label for="clients" class="col-sm-2 control-label">
+                                <?php echo (__("Clients"));?>
+                            </label>
+
+                            <?php echo $this->Form->input('client_id', ['class' =>'form-control','label' => false,'options' => $users]);?>        
+                        </div>
+                        <div class="form-group">
+                            <label for="balance" class="col-sm-2 control-label">
+                            <?php echo (__("Balance"));?>
+                            </label>
+
+                            <?php echo $this->Form->input('balance',['class' =>'form-control','label' => false]); ?>
+                        </div>
+
+                        <!--											<div class="form-group">
+                                                                                                                        <label for="api_secret" class="col-sm-2 control-label">API
+                                                                                                                                Secret</label>
+                        
+                                                                                                                        <div class="col-sm-10">
+                                                                                                                                <input type="text" name="api_secret" class="form-control" id="api_secret" placeholder="API Secret">
+                                                                                                                        </div>
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                                                                                                <button type="submit" class="btn btn-info pull-left">Generate
+                                                                                                                                        Token</button>
+                                                                                                                        </div>
+                                                                                                                </div>
+                                                                                                                <div class="form-group">
+                                                                                                                        <div class="col-sm-offset-2 col-sm-10">
+                                                                                                                                <p>
+                                                                                                                                        <strong>Your Token is :</strong>---------------------------
+                                                                                                                                </p>
+                                                                                                                        </div>
+                                                                                                                </div>-->
+                        <div class="form-group">   
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <?= $this->Html->link(__('Cancle'), ['action' => 'index'],['class' => 'btn btn-info custom-button-width .navbar-right']) ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer"></div>
+            <!-- /.box-footer -->
+							<?= $this->Form->end() ?>
+        </div>
+        <!-- /.box -->
+
+    </div>
+    <!--/.col (right) -->
 </div>
